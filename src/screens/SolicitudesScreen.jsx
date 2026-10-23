@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import {
   Alert,
+  ActivityIndicator,
   Image,
   Pressable,
   ScrollView,
@@ -11,8 +12,10 @@ import {
 } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import * as Location from 'expo-location';
+import * as Notifications from 'expo-notifications';
 import SensorMovimiento from '../components/SensorMovimiento';
 import Titulo from '../components/Titulo';
+import { guardarSolicitudEnBackend } from '../services/solicitudesApi';
 
 const TEXTO_MOVIMIENTO = 'Movimiento detectado: requiere atención en mesa.';
 
@@ -22,6 +25,7 @@ export default function SolicitudesScreen() {
   const [imagen, setImagen] = useState(null);
   const [ubicacion, setUbicacion] = useState(null);
   const [consultandoUbicacion, setConsultandoUbicacion] = useState(false);
+  const [guardandoSolicitud, setGuardandoSolicitud] = useState(false);
 
   const seleccionarImagen = async () => {
     try {
@@ -96,6 +100,51 @@ export default function SolicitudesScreen() {
     ));
   };
 
+  const registrarSolicitud = async () => {
+    if (!asunto.trim() || !descripcion.trim()) {
+      Alert.alert('Datos incompletos', 'Escribe el asunto y la descripción de la solicitud.');
+      return;
+    }
+
+    setGuardandoSolicitud(true);
+    try {
+      const solicitud = await guardarSolicitudEnBackend({
+        asunto,
+        descripcion,
+        imagen,
+        ubicacion,
+      });
+
+      setAsunto('');
+      setDescripcion('');
+      setImagen(null);
+      setUbicacion(null);
+
+      try {
+        await Notifications.scheduleNotificationAsync({
+          content: {
+            title: 'Solicitud registrada',
+            body: 'Tu solicitud se guardó correctamente.',
+            data: { tipo: 'solicitud_creada', solicitudId: solicitud.id },
+          },
+          trigger: null,
+        });
+        Alert.alert('Solicitud registrada', 'Se guardó correctamente.');
+      } catch (errorNotificacion) {
+        console.warn('La solicitud se guardó, pero falló la notificación local:', errorNotificacion);
+        Alert.alert(
+          'Solicitud registrada',
+          'El servidor guardó la solicitud, pero no se pudo mostrar la notificación. Revisa los permisos de notificaciones.',
+        );
+      }
+    } catch (error) {
+      const mensaje = error instanceof Error ? error.message : String(error);
+      Alert.alert('No se pudo registrar', mensaje);
+    } finally {
+      setGuardandoSolicitud(false);
+    }
+  };
+
   return (
     <ScrollView
       contentContainerStyle={styles.contenido}
@@ -139,6 +188,19 @@ export default function SolicitudesScreen() {
         <Text style={styles.textoBoton}>
           {consultandoUbicacion ? 'Consultando ubicación…' : 'Obtener ubicación'}
         </Text>
+      </Pressable>
+
+      <Pressable
+        onPress={registrarSolicitud}
+        disabled={guardandoSolicitud}
+        style={[styles.boton, guardandoSolicitud && styles.botonDesactivado]}
+        accessibilityRole="button"
+      >
+        {guardandoSolicitud ? (
+          <ActivityIndicator color="#FFFFFF" />
+        ) : (
+          <Text style={styles.textoBoton}>Registrar solicitud</Text>
+        )}
       </Pressable>
 
       {ubicacion && (

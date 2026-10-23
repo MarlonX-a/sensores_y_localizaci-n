@@ -32,6 +32,16 @@ export default function MenuInferior({ pantallaActual, setPantallaActual }){
                     Perfil
                 </Text>
             </Pressable>
+            <Pressable style={styles.opcion} onPress={() => setPantallaActual('notificaciones')}>
+                <Text
+                    style = { pantallaActual === 'notificaciones'
+                        ? styles.activo
+                        : styles.texto
+                    }
+                >
+                    Notificaciones
+                </Text>
+            </Pressable>
         </View>
     )
 }

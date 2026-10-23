@@ -12,21 +12,39 @@
         {
           "motionPermission": "PICAMONTE usa el movimiento del teléfono para marcar una solicitud de atención en mesa."
         }
+      ],
+      "expo-status-bar",
+      "expo-notifications",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
+        }
       ]
     ],
     "ios": {
       "supportsTablet": true
     },
     "android": {
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
-      }
+      },
+      "package": "ec.edu.picamonte.solicitudes"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9c89f1de-97ca-417d-96d2-3fe311ca0277"
+      }
+    },
+    "owner": "marlonx-as-team"
   }
 }

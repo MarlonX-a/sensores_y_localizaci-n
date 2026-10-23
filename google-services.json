@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "233954449169",
+    "project_id": "hibridas-e984c",
+    "storage_bucket": "hibridas-e984c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:233954449169:android:63f3dda1296c9c4fa25eb0",
+        "android_client_info": {
+          "package_name": "ec.edu.picamonte.solicitudes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5Qo03Qx4dnWxvpPN6C9r7DFUqG0wqCIM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

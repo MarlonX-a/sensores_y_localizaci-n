@@ -8,6 +8,8 @@ import MenuScreen from './src/screens/MenuScreen';
 import PerfilScreen from './src/screens/PerfilScreen';
 import SolicitudesScreen from './src/screens/SolicitudesScreen';
 import InicioScreen from './src/screens/InicioScreen';
+import NotificacionesPush from './src/screens/NotificacionesPush';
+
 import { useState } from 'react';
 
 import MenuInferior from './src/components/MenuInferior';
@@ -37,6 +39,9 @@ export default function App() {
   else if (pantallaActual === 'perfil') {
     //pantalla = <PerfilScreen titulo="Perfil" subtitulo="Información del usuario" />;
     pantalla = <PerfilScreen titulo="Perfil" subtitulo="Aquí puedes ver tu información y modificarla" />;
+  }
+  else if (pantallaActual === 'notificaciones'){
+    pantalla = <NotificacionesPush />
   }
   else {
     pantalla = <InicioScreen titulo="Bienvenido a PICAMONTE" subtitulo="Sabor costeño y hecho con cariño" />;
