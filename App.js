@@ -9,6 +9,7 @@ import PerfilScreen from './src/screens/PerfilScreen';
 import SolicitudesScreen from './src/screens/SolicitudesScreen';
 import InicioScreen from './src/screens/InicioScreen';
 import NotificacionesPush from './src/screens/NotificacionesPush';
+import SolicitudesLocales from './src/screens/SolicitudesLocales';
 
 import { useState } from 'react';
 
@@ -32,9 +33,10 @@ export default function App() {
   //determinar qué pantalla debe mostrar la app
 
   let pantalla;
-  if (pantallaActual === 'menu') {
+  if (pantallaActual === 'Solicitudes') {
     //pantalla = <MenuScreen titulo="Menú" subtitulo="Servicio Abierto" />;
-    pantalla = <SolicitudesScreen/>;
+    //pantalla = <SolicitudesScreen/>;
+    pantalla = <SolicitudesLocales />;
   }
   else if (pantallaActual === 'perfil') {
     //pantalla = <PerfilScreen titulo="Perfil" subtitulo="Información del usuario" />;

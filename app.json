@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "tarea3",
+    "name": "Marlon",
     "slug": "tarea3",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -22,7 +22,8 @@
             "usesCleartextTraffic": true
           }
         }
-      ]
+      ],
+      "expo-sqlite"
     ],
     "ios": {
       "supportsTablet": true

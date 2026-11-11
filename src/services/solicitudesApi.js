@@ -1,6 +1,6 @@
 // Usa la IPv4 de la computadora donde se ejecuta el backend.
 // Si cambia la red o la dirección, actualiza este valor.
-const API_BASE_URL = 'http://192.168.1.21:3000';
+const API_BASE_URL = 'http://192.168.137.1:3000';
 
 export async function guardarSolicitudEnBackend(datos) {
   let response;

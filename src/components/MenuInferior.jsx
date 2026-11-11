@@ -12,14 +12,14 @@ export default function MenuInferior({ pantallaActual, setPantallaActual }){
                     Inicio
                 </Text>
             </Pressable>
-            <Pressable style={styles.opcion} onPress={() => setPantallaActual('menu')}>
+            <Pressable style={styles.opcion} onPress={() => setPantallaActual('Solicitudes')}>
                 <Text
-                    style = { pantallaActual === 'menu'
+                    style = { pantallaActual === 'Solicitudes'
                         ? styles.activo
                         : styles.texto
                     }
                 >
-                    Menú
+                    Solicitudes
                 </Text>
             </Pressable>
             <Pressable style={styles.opcion} onPress={() => setPantallaActual('perfil')}>

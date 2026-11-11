@@ -123,8 +123,8 @@ export default function SolicitudesScreen() {
       try {
         await Notifications.scheduleNotificationAsync({
           content: {
-            title: 'Solicitud registrada',
-            body: 'Tu solicitud se guardó correctamente.',
+            title: 'Promocion registrada',
+            body: 'Tu promoción se guardó correctamente.',
             data: { tipo: 'solicitud_creada', solicitudId: solicitud.id },
           },
           trigger: null,
@@ -152,19 +152,20 @@ export default function SolicitudesScreen() {
       showsVerticalScrollIndicator={false}
     >
       <Titulo
-        text="Nueva solicitud"
-        subtitulo="Completa los datos para crear una nueva solicitud"
+        text="Nueva Promoción"
+        subtitulo="Completa los datos para agregar una nueva promoción y enviar a todos los usuarios"
       />
 
+      <View style={styles.tarjeta}>
       <TextInput
-        accessibilityLabel="Asunto de la solicitud"
+        accessibilityLabel="Asunto de la nueva promocion"
         placeholder="Asunto"
         value={asunto}
         onChangeText={setAsunto}
         style={styles.input}
       />
       <TextInput
-        accessibilityLabel="Descripción de la solicitud"
+        accessibilityLabel="Descripción de la nueva promoción"
         placeholder="Descripción"
         value={descripcion}
         onChangeText={setDescripcion}
@@ -199,7 +200,7 @@ export default function SolicitudesScreen() {
         {guardandoSolicitud ? (
           <ActivityIndicator color="#FFFFFF" />
         ) : (
-          <Text style={styles.textoBoton}>Registrar solicitud</Text>
+          <Text style={styles.textoBoton}>Registrar Promocion</Text>
         )}
       </Pressable>
 
@@ -221,6 +222,7 @@ export default function SolicitudesScreen() {
           <Image source={{ uri: imagen }} style={styles.imagen} resizeMode="cover" />
         </View>
       )}
+      </View>
 
       <SensorMovimiento onMovimientoDetectado={marcarAtencionEnMesa} />
     </ScrollView>
@@ -233,10 +235,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#F5F5F5',
+    paddingHorizontal: 16,
     paddingVertical: 20,
   },
+  tarjeta: {
+    width: '100%',
+    maxWidth: 460,
+    marginBottom: 16,
+    padding: 16,
+    borderRadius: 12,
+    backgroundColor: '#FFFFFF',
+    elevation: 2,
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+  },
   input: {
-    width: '85%',
+    width: '100%',
     minHeight: 45,
     marginBottom: 14,
     paddingHorizontal: 12,
@@ -251,11 +267,12 @@ const styles = StyleSheet.create({
     paddingTop: 12,
   },
   boton: {
-    minHeight: 42,
+    minHeight: 44,
     justifyContent: 'center',
     alignItems: 'center',
-    width: '85%',
-    marginBottom: 10,
+    width: '100%',
+    marginTop: 2,
+    marginBottom: 12,
     paddingHorizontal: 14,
     borderRadius: 8,
     backgroundColor: '#007BFF',
@@ -269,7 +286,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   tarjetaDato: {
-    width: '85%',
+    width: '100%',
     marginBottom: 14,
     padding: 12,
     borderRadius: 8,
@@ -281,7 +298,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
   vistaImagen: {
-    width: '85%',
+    width: '100%',
     marginBottom: 14,
   },
   imagen: {
